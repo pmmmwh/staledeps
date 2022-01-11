@@ -31,8 +31,8 @@
     "lint:fix": "yarn lint --fix",
     "format": "prettier --ignore-path .gitignore --write \"**/*.{ts,json,md,yaml,yml}\"",
     "format:check": "prettier --ignore-path .gitignore --check \"**/*.{ts,json,md,yaml,yml}\"",
-    "prepublishOnly": "yarn clean && yarn build",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prepack": "yarn clean && yarn build"
   },
   "dependencies": {
     "chalk": "^5.0.0",
