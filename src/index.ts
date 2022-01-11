@@ -49,7 +49,7 @@ async function main(
   const processPaths = [...paths];
   if (processPaths.length === 0) {
     ora().info("Auto-loading package.json in current directory");
-    processPaths.push(path.join(process.cwd(), "package.json"));
+    processPaths.push("package.json");
   }
 
   const fileMsg = t("file", processPaths.length);
