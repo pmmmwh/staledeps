@@ -46,11 +46,17 @@ async function main(
   paths: ReadonlyArray<string | number>,
   options: Options
 ): Promise<void> {
-  const fileMsg = t("file", paths.length);
+  const processPaths = [...paths];
+  if (processPaths.length === 0) {
+    ora().info("Auto-loading package.json in current directory");
+    processPaths.push(path.join(process.cwd(), "package.json"));
+  }
+
+  const fileMsg = t("file", processPaths.length);
   const manitestData = await oraPromise(
     async (ora) => {
       const results = await Promise.all(
-        paths.map(async (maybePath) => {
+        processPaths.map(async (maybePath) => {
           const filePath = path.normalize(String(maybePath));
           try {
             const buffer = await fs.readFile(filePath);
@@ -226,7 +232,9 @@ yargs(hideBin(process.argv))
   .command(
     "$0",
     packageJson.description,
-    () => {},
+    () => {
+      // Do nothing
+    },
     (argv) => {
       return main(argv._, {
         full: argv.f,
