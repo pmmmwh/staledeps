@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Checks
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node:
+          - 12
+          - 14
+          - 16
+          - 17
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Setup Node.js v${{ matrix.node }}
+        uses: actions/setup-node@v2
+        with:
+          cache: yarn
+          node-version: ${{ matrix.node }}
+      - name: Install deps
+        run: yarn
+      - name: Lint code
+        run: yarn lint
+      - name: Format code
+        run: yarn format:check
+      - name: Type check code
+        run: yarn typecheck
+      - name: Build package
+        run: yarn build
