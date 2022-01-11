@@ -1,0 +1,71 @@
+{
+  "name": "staledeps",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Find stale dependencies in the package.json file(s)",
+  "author": "Michael Mok",
+  "license": "MIT",
+  "homepage": "https://github.com/pmmmwh/staledeps#readme",
+  "bugs": "https://github.com/pmmmwh/staledeps/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pmmmwh/staledeps.git"
+  },
+  "files": [
+    "dist",
+    "!**/*.tsbuildinfo"
+  ],
+  "bin": "./dist/index.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": "./dist/index.js"
+  },
+  "types": "./dist/index.d.ts",
+  "packageManager": "yarn@3.1.1",
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "tsc --build --clean",
+    "lint": "eslint --ext .ts --ignore-path .gitignore --report-unused-disable-directives .",
+    "lint:fix": "yarn lint --fix",
+    "format": "prettier --ignore-path .gitignore --write \"**/*.{ts,json,md,yaml,yml}\"",
+    "format:check": "prettier --ignore-path .gitignore --check \"**/*.{ts,json,md,yaml,yml}\"",
+    "prepublishOnly": "yarn clean && yarn build",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "chalk": "^5.0.0",
+    "cliui": "^7.0.4",
+    "ms": "^3.0.0-canary.1",
+    "ora": "^6.0.1",
+    "p-limit": "^4.0.0",
+    "tslib": "^2.3.1",
+    "undici": "^4.12.1",
+    "yargs": "^17.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.8",
+    "@types/yargs": "^17.0.8",
+    "@typescript-eslint/eslint-plugin": "^5.9.1",
+    "@typescript-eslint/parser": "^5.9.1",
+    "eslint": "^8.6.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "prettier": "^2.5.1",
+    "type-fest": "^2.9.0",
+    "typescript": "^4.5.4"
+  },
+  "peerDependencies": {
+    "type-fest": "^2.9.0"
+  },
+  "peerDependenciesMeta": {
+    "type-fest": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">= 12.20"
+  }
+}
