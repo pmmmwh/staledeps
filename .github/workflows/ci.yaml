@@ -19,7 +19,7 @@ jobs:
           - 12
           - 14
           - 16
-          - 17
+          - 18
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
