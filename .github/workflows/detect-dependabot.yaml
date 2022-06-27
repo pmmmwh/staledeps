@@ -8,6 +8,6 @@ on:
 jobs:
   detect-dependabot:
     runs-on: ubuntu-latest
-    if: github.actor == 'dependabot[bot]' && !contains(github.event.commits[0].message, 'fix lockfile')
+    if: github.actor == 'dependabot[bot]'
     steps:
-      - run: echo "PR created by Dependabot"
+      - run: echo "Branch updated by Dependabot"
