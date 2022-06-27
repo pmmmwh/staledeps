@@ -1,24 +1,24 @@
 name: Fix Yarn lockfiles updated by Dependabot
 
 on:
-  push:
-    branches:
-      - dependabot/npm_and_yarn/**
-
-permissions:
-  contents: write
+  workflow_run:
+    workflows:
+      - Detect Dependabot
+    types:
+      - completed
 
 jobs:
   fix-lockfiles:
     name: Fix Lockfiles
     runs-on: ubuntu-latest
-    if: ${{ github.actor == 'dependabot[bot]' }}
+    if: github.event.workflow_run.conclusion == 'success'
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
         with:
           fetch-depth: 2
-          persist-credentials: false
+          ref: ${{ github.event.workflow_run.head_branch }}
+          token: ${{ secrets.GH_TOKEN }}
       - name: Setup Node.js v18
         uses: actions/setup-node@v2
         with:
@@ -36,8 +36,10 @@ jobs:
       - name: Commit changes
         run: |-
           cd .$(git log -1 --pretty=%s | awk '{ print $9 }')
-          git config user.name '${{ github.event.commits[0].author.name }}'
-          git config user.email '${{ github.event.commits[0].author.email }}'
+
+          git config user.name '${{ github.event.workflow_run.head_commit.author.name }}'
+          git config user.email '${{ github.event.workflow_run.head_commit.author.email }}'
+
           git add yarn.lock
-          git commit -m "chore(deps): fix broken Yarn lockfile" --signoff
+          git commit -m "chore(deps): fix lockfile" --signoff
           git push

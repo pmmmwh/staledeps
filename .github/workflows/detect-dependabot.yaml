@@ -1,0 +1,13 @@
+name: Detect Dependabot
+
+on:
+  push:
+    branches:
+      - dependabot/npm_and_yarn/**
+
+jobs:
+  detect-dependabot:
+    runs-on: ubuntu-latest
+    if: github.actor == 'dependabot[bot]' && !contains(github.event.commits[0].message, 'fix lockfile')
+    steps:
+      - run: echo "PR created by Dependabot"
