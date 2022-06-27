@@ -12,13 +12,12 @@ jobs:
   fix-lockfiles:
     name: Fix Lockfiles
     runs-on: ubuntu-latest
-    if: ${{ github.actor == 'dependabot[bot]' }}
+    if: github.actor == 'dependabot[bot]' && !contains(github.event.commits[0].message, 'fix lockfile')
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
         with:
           fetch-depth: 2
-          persist-credentials: false
       - name: Setup Node.js v18
         uses: actions/setup-node@v2
         with:
@@ -39,5 +38,5 @@ jobs:
           git config user.name '${{ github.event.commits[0].author.name }}'
           git config user.email '${{ github.event.commits[0].author.email }}'
           git add yarn.lock
-          git commit -m "chore(deps): fix broken Yarn lockfile" --signoff
+          git commit -m "chore(deps): fix lockfile" --signoff
           git push
