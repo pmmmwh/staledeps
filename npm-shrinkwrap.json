@@ -1,12 +1,12 @@
 {
   "name": "staledeps",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "lockfileVersion": 2,
   "requires": true,
   "packages": {
     "": {
       "name": "staledeps",
-      "version": "0.1.0",
+      "version": "0.1.2",
       "license": "MIT",
       "dependencies": {
         "chalk": "^5.0.0",
@@ -15,7 +15,7 @@
         "ora": "^6.0.1",
         "p-limit": "^4.0.0",
         "tslib": "^2.3.1",
-        "undici": "^4.12.1",
+        "undici": "^5.5.1",
         "yargs": "^17.3.1"
       },
       "bin": {
@@ -1988,9 +1988,9 @@
       }
     },
     "node_modules/undici": {
-      "version": "4.12.1",
-      "resolved": "https://registry.npmjs.org/undici/-/undici-4.12.1.tgz",
-      "integrity": "sha512-MSfap7YiQJqTPP12C11PFRs9raZuVicDbwsZHTjB0a8+SsCqt7KdUis54f373yf7ZFhJzAkGJLaKm0202OIxHg==",
+      "version": "5.5.1",
+      "resolved": "https://registry.npmjs.org/undici/-/undici-5.5.1.tgz",
+      "integrity": "sha512-MEvryPLf18HvlCbLSzCW0U00IMftKGI5udnjrQbC5D4P0Hodwffhv+iGfWuJwg16Y/TK11ZFK8i+BPVW2z/eAw==",
       "engines": {
         "node": ">=12.18"
       }
@@ -3449,9 +3449,9 @@
       "dev": true
     },
     "undici": {
-      "version": "4.12.1",
-      "resolved": "https://registry.npmjs.org/undici/-/undici-4.12.1.tgz",
-      "integrity": "sha512-MSfap7YiQJqTPP12C11PFRs9raZuVicDbwsZHTjB0a8+SsCqt7KdUis54f373yf7ZFhJzAkGJLaKm0202OIxHg=="
+      "version": "5.5.1",
+      "resolved": "https://registry.npmjs.org/undici/-/undici-5.5.1.tgz",
+      "integrity": "sha512-MEvryPLf18HvlCbLSzCW0U00IMftKGI5udnjrQbC5D4P0Hodwffhv+iGfWuJwg16Y/TK11ZFK8i+BPVW2z/eAw=="
     },
     "uri-js": {
       "version": "4.4.1",
