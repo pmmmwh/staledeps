@@ -19,6 +19,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 2
+          persist-credentials: false
       - name: Setup Node.js v18
         uses: actions/setup-node@v2
         with:
@@ -29,12 +30,13 @@ jobs:
           YARN_ENABLE_SCRIPTS: 0
         run: |-
           git checkout HEAD^ -- yarn.lock
-          git diff --name-only HEAD^ HEAD | grep -q 'package.json' || yarn up --mode=update-lockfile $(git log -1 --pretty=%s | awk '{ print $2 }')
+          git diff --name-only HEAD^ HEAD | grep -q 'package.json' || yarn up --mode=update-lockfile $(git log -1 --pretty=%s | awk '{ print $3 }')
           git checkout HEAD -- package.json
           yarn install --no-immutable --mode=update-lockfile
           yarn dedupe --mode=update-lockfile
       - name: Commit changes
         run: |-
+          cd .$(git log -1 --pretty=%s | awk '{ print $9 }')
           git config user.name 'dependabot[bot]'
           git config user.email 'support@github.com'
           git add yarn.lock
