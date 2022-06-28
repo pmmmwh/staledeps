@@ -28,7 +28,7 @@ type ManifestData = {
   readonly name?: string;
 };
 
-type RegistryReesponse = {
+type RegistryResponse = {
   readonly ["dist-tags"]: {
     latest: string;
   };
@@ -85,6 +85,7 @@ async function main(
       return new Map<string, ManifestData>(results.filter(typedBoolean));
     },
     {
+      discardStdin: false,
       text: `Loading package.json ${fileMsg}`,
       failText: `Failed to load package.json ${fileMsg}`,
       successText: (results) =>
@@ -102,7 +103,8 @@ async function main(
   const depMsg = t("dependency", depSet.size);
   const depResults = await oraPromise(
     async (ora) => {
-      // Rate-limit calls to `npm` to be safe in case we're pulling for a lot of dependencies
+      // Rate-limit calls to `npm` to be safe,
+      // in case we're pulling for a lot of dependencies
       const limit = pLimit(300);
       const results = await Promise.all(
         Array.from(depSet, (d) => {
@@ -118,7 +120,7 @@ async function main(
             }
 
             try {
-              const res: RegistryReesponse = await body.json();
+              const res: RegistryResponse = await body.json();
               const lastPublishTime = res.time[res["dist-tags"].latest];
 
               let stale = false;
@@ -142,6 +144,7 @@ async function main(
       return new Map<string, DependencyResult>(results.filter(typedBoolean));
     },
     {
+      discardStdin: false,
       text: `Fetching metadata for ${depMsg}`,
       failText: `Failed to fetch metadata for ${depMsg}`,
       successText: (results) =>
@@ -203,7 +206,7 @@ yargs(hideBin(process.argv))
           ora().warn("Using non-HTTPS registry URL");
         }
         return url;
-      } catch (error) {
+      } catch (_) {
         throw new Error("Failed to parse registry URL!");
       }
     },
