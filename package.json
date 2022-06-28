@@ -69,6 +69,6 @@
     "ms": "patch:ms@npm:3.0.0-canary.1#.yarn/patches/ms-npm-3.0.0-canary.1-a95efad0b2.patch"
   },
   "engines": {
-    "node": ">= 12.20"
+    "node": ">= 14.16"
   }
 }
