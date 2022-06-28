@@ -47,11 +47,11 @@
   "devDependencies": {
     "@types/node": "^18.0.0",
     "@types/yargs": "^17.0.10",
-    "@typescript-eslint/eslint-plugin": "^5.29.0",
-    "@typescript-eslint/parser": "^5.29.0",
+    "@typescript-eslint/eslint-plugin": "^5.30.0",
+    "@typescript-eslint/parser": "^5.30.0",
     "eslint": "^8.18.0",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-prettier": "^4.1.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "prettier": "^2.7.1",
     "type-fest": "^2.14.0",
@@ -65,7 +65,10 @@
       "optional": true
     }
   },
+  "resolutions": {
+    "ms": "patch:ms@npm:3.0.0-canary.1#.yarn/patches/ms-npm-3.0.0-canary.1-a95efad0b2.patch"
+  },
   "engines": {
-    "node": ">= 12.20"
+    "node": ">= 14.16"
   }
 }
