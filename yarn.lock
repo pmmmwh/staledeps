@@ -1084,8 +1084,8 @@ __metadata:
   linkType: hard
 
 "ora@npm:^6.1.1":
-  version: 6.1.1
-  resolution: "ora@npm:6.1.1"
+  version: 6.1.2
+  resolution: "ora@npm:6.1.2"
   dependencies:
     bl: ^5.0.0
     chalk: ^5.0.0
@@ -1096,7 +1096,7 @@ __metadata:
     log-symbols: ^5.1.0
     strip-ansi: ^7.0.1
     wcwidth: ^1.0.1
-  checksum: 2425718d4bad04b0ab1ffd4034fdcc249706211fff85d800fc19a2bab0c64626c12f7b223b1d8461439b835c444e92f7b92d6864810f4e43082304be60de3339
+  checksum: d5af3d67ad7affcf3029ffe3ef547f3335fb72abdc382040ae8bd75ad5c629f5d165ed9e398fd4fb08100701eafbec34bb9dc3f29e919f6f75c443290faa1db2
   languageName: node
   linkType: hard
 
