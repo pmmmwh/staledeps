@@ -1,4 +1,5 @@
 import { createRequire } from "node:module";
+
 import type { PackageJson, SetRequired } from "type-fest";
 
 const require = createRequire(import.meta.url);
