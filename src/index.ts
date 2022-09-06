@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 
-import chalk from "chalk";
-import type { StringValue } from "ms";
-import ms from "ms";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { URL } from "node:url";
 import { TextDecoder } from "node:util";
+
+import chalk from "chalk";
+import type { StringValue } from "ms";
+import ms from "ms";
 import ora, { oraPromise } from "ora";
 import pLimit from "p-limit";
 import type { PackageJson } from "type-fest";

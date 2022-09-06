@@ -1,6 +1,7 @@
+import { createRequire } from "node:module";
+
 import chalk from "chalk";
 import type { UI } from "cliui";
-import { createRequire } from "node:module";
 
 // FIXME: Swap to ESM imports
 //  `cliui` have issues with ANSI formatting running in ESM
