@@ -54,7 +54,7 @@
     "eslint-plugin-prettier": "^4.1.0",
     "eslint-plugin-simple-import-sort": "^8.0.0",
     "prettier": "^2.7.1",
-    "type-fest": "^2.14.0",
+    "type-fest": "^3.0.0",
     "typescript": "~4.8.2"
   },
   "peerDependencies": {
