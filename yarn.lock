@@ -1466,7 +1466,7 @@ __metadata:
     undici: ^5.5.1
     yargs: ^17.5.1
   peerDependencies:
-    type-fest: ^2.9.0
+    type-fest: ^3.0.0
   peerDependenciesMeta:
     type-fest:
       optional: true
