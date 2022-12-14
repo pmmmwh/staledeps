@@ -1147,7 +1147,7 @@ __metadata:
 
 "ms@patch:ms@npm:3.0.0-canary.1#.yarn/patches/ms-npm-3.0.0-canary.1-a95efad0b2.patch::locator=staledeps%40workspace%3A.":
   version: 3.0.0-canary.1
-  resolution: "ms@patch:ms@npm%3A3.0.0-canary.1#.yarn/patches/ms-npm-3.0.0-canary.1-a95efad0b2.patch::version=3.0.0-canary.1&hash=aed2aa&locator=staledeps%40workspace%3A."
+  resolution: "ms@patch:ms@npm%3A3.0.0-canary.1#.yarn/patches/ms-npm-3.0.0-canary.1-a95efad0b2.patch::version=3.0.0-canary.1&hash=858095&locator=staledeps%40workspace%3A."
   checksum: c04adcfc5e686094806184144cd019cc684b645c5d611bd4335bb16ad48c5627226531aab7c8b74e18b9379108c6f98284fb0d70e86ef6a1bb0c85021e20414f
   languageName: node
   linkType: hard
@@ -1612,7 +1612,7 @@ __metadata:
 
 "typescript@patch:typescript@~4.9.3#~builtin<compat/typescript>":
   version: 4.9.4
-  resolution: "typescript@patch:typescript@npm%3A4.9.4#~builtin<compat/typescript>::version=4.9.4&hash=701156"
+  resolution: "typescript@patch:typescript@npm%3A4.9.4#~builtin<compat/typescript>::version=4.9.4&hash=d73830"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
