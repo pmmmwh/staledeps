@@ -23,7 +23,7 @@
     ".": "./dist/index.js"
   },
   "types": "./dist/index.d.ts",
-  "packageManager": "yarn@3.2.4",
+  "packageManager": "yarn@3.3.0",
   "scripts": {
     "build": "tsc --build",
     "clean": "tsc --build --clean",
