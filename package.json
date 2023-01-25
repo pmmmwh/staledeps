@@ -52,7 +52,7 @@
     "eslint": "^8.18.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.1.0",
-    "eslint-plugin-simple-import-sort": "^8.0.0",
+    "eslint-plugin-simple-import-sort": "^9.0.0",
     "prettier": "^2.7.1",
     "type-fest": "^3.0.0",
     "typescript": "~4.9.3"
