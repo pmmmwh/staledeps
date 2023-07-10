@@ -32,11 +32,6 @@ type RegistryResponse = {
   };
 };
 
-const formatters = {
-  absolute: toISOString,
-  relative: toAgo,
-} as const;
-
 async function main(
   paths: ReadonlyArray<string | number>,
   options: Options
@@ -164,13 +159,16 @@ async function main(
         })
         .filter(typedBoolean)
         .sort((a, b) => {
-          if (options.sort === "name") return a[0].localeCompare(b[0]);
-          return (a[1] ?? 0) - (b[1] ?? 0);
+          const x = options.sortDir === "desc" ? -1 : 1;
+          if (options.sort === "name") return x * a[0].localeCompare(b[0]);
+          return x * ((a[1] ?? 0) - (b[1] ?? 0));
         })
         .map(([name, lastPublish, stale]) => [
           name,
           lastPublish != null
-            ? formatters[options.dateFormat](lastPublish, now)
+            ? options.output === "json"
+              ? toISOString(lastPublish)
+              : toAgo(lastPublish, now)
             : null,
           stale,
         ]),
@@ -188,16 +186,16 @@ yargs(hideBin(process.argv))
   .alias("h", "help")
   .showHelpOnFail(false, "Specify --help for available options")
   .option("d", {
-    alias: "date-format",
-    coerce: (value): Options["dateFormat"] => {
-      if (!["absolute", "relative"].includes(value)) {
-        throw new Error(`Date format ${value} is not supported!`);
+    alias: "sort-dir",
+    coerce: (value): Options["sortDir"] => {
+      if (!["asc", "desc"].includes(value)) {
+        throw new Error(`Sort direction ${value} is not supported!`);
       }
       return value;
     },
-    default: "relative",
-    describe: "Format to output dates",
-    nargs: 1,
+    default: "asc",
+    describe: "Direction to sort data",
+    ngargs: 1,
   })
   .option("f", {
     alias: "full",
@@ -208,7 +206,7 @@ yargs(hideBin(process.argv))
   })
   .option("o", {
     alias: "output",
-    coerce: (value): "json" | "table" => {
+    coerce: (value): Options["output"] => {
       if (!["json", "table"].includes(value)) {
         throw new Error(`Output to ${value} is not supported!`);
       }
@@ -237,7 +235,7 @@ yargs(hideBin(process.argv))
   })
   .option("s", {
     alias: "sort",
-    coerce: (value): "name" | "lastPublish" => {
+    coerce: (value): Options["sort"] => {
       if (!["name", "lastPublish"].includes(value)) {
         throw new Error(`Format ${value} is not supported!`);
       }
@@ -273,11 +271,11 @@ yargs(hideBin(process.argv))
     },
     (argv) => {
       return main(argv._, {
-        dateFormat: argv.d,
         full: argv.f,
         output: argv.o,
         registry: argv.r,
         sort: argv.s,
+        sortDir: argv.d,
         threshold: argv.t,
       });
     }

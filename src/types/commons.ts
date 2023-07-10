@@ -1,9 +1,9 @@
 export type Options = {
-  readonly dateFormat: "absolute" | "relative";
   readonly full: boolean;
   readonly output: "json" | "table";
   readonly registry: URL;
   readonly sort: "name" | "lastPublish";
+  readonly sortDir: "asc" | "desc";
   readonly threshold: number;
 };
 
