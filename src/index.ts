@@ -5,7 +5,6 @@ import path from "node:path";
 import { URL } from "node:url";
 import { TextDecoder } from "node:util";
 
-import chalk from "chalk";
 import type { StringValue } from "ms";
 import ms from "ms";
 import ora, { oraPromise } from "ora";
@@ -15,19 +14,14 @@ import undici from "undici";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 
-import { packageJson, t, typedBoolean } from "./helpers.js";
-import Table from "./table.js";
-
-type Options = {
-  readonly full: boolean;
-  readonly registry: URL;
-  readonly threshold: number;
-};
-
-type ManifestData = {
-  readonly dependencies: string[];
-  readonly name?: string;
-};
+import { packageJson, t, toAgo, toISOString, typedBoolean } from "./helpers.js";
+import { outputs } from "./outputs.js";
+import type {
+  DependencyResult,
+  ManifestData,
+  ManifestOutputData,
+  Options,
+} from "./types/commons.js";
 
 type RegistryResponse = {
   readonly ["dist-tags"]: {
@@ -38,10 +32,10 @@ type RegistryResponse = {
   };
 };
 
-type DependencyResult = {
-  readonly lastPublish: string;
-  readonly stale: boolean;
-};
+const formatters = {
+  absolute: toISOString,
+  relative: toAgo,
+} as const;
 
 async function main(
   paths: ReadonlyArray<string | number>,
@@ -53,8 +47,10 @@ async function main(
     processPaths.push("package.json");
   }
 
+  const now = Date.now();
+
   const fileMsg = t("file", processPaths.length);
-  const manitestData = await oraPromise(
+  const manifestData = await oraPromise(
     async (ora) => {
       const results = await Promise.all(
         processPaths.map(async (maybePath) => {
@@ -71,8 +67,10 @@ async function main(
               filePath,
               {
                 dependencies: [
-                  ...Object.keys(dependencies),
-                  ...Object.keys(devDependencies),
+                  ...new Set([
+                    ...Object.keys(dependencies),
+                    ...Object.keys(devDependencies),
+                  ]),
                 ].sort(),
                 name,
               },
@@ -95,7 +93,7 @@ async function main(
   );
 
   const depSet = new Set<string>();
-  for (const { dependencies } of manitestData.values()) {
+  for (const { dependencies } of manifestData.values()) {
     dependencies.forEach((dep) => {
       depSet.add(dep);
     });
@@ -125,12 +123,10 @@ async function main(
               const lastPublishTime = res.time[res["dist-tags"].latest];
 
               let stale = false;
-              let lastPublish = "Unknown";
+              let lastPublish: number | undefined = undefined;
               if (lastPublishTime) {
-                const lastPublishDiff =
-                  Date.now() - Date.parse(lastPublishTime);
-                lastPublish = `${ms(lastPublishDiff, { long: true })} ago`;
-                stale = lastPublishDiff > options.threshold;
+                lastPublish = Date.parse(lastPublishTime);
+                stale = now - lastPublish > options.threshold;
               }
 
               return [dep, { lastPublish, stale }] as const;
@@ -153,35 +149,35 @@ async function main(
     }
   );
 
-  for (const [path, data] of manitestData.entries()) {
-    const rowData: [string, string][] = [];
-    let depsMaxLength = 0;
-    for (const dep of data.dependencies) {
-      const result = depResults.get(dep);
-      let pushed = false;
-      if (result == null) {
-        rowData.push([chalk.yellow(dep), chalk.yellow("Failed to fetch")]);
-        pushed = true;
-      } else if (result.stale) {
-        rowData.push([chalk.red(dep), chalk.red(result.lastPublish)]);
-        pushed = true;
-      } else if (options.full) {
-        rowData.push([chalk.green(dep), chalk.green(result.lastPublish)]);
-        pushed = true;
-      }
-
-      if (pushed && dep.length > depsMaxLength) {
-        depsMaxLength = dep.length;
-      }
-    }
-
-    const table = new Table({ depsMaxLength, name: data.name, path });
-    rowData.forEach((d) => {
-      table.addRow(...d);
+  const outputData = new Map<string, ManifestOutputData>();
+  for (const [path, data] of manifestData.entries()) {
+    outputData.set(path, {
+      ...data,
+      dependencies: data.dependencies
+        .map((dep) => {
+          const result = depResults.get(dep);
+          if (result == null || result.lastPublish == null) {
+            return [dep, null, null] as const;
+          } else if (result.stale || options.full) {
+            return [dep, result.lastPublish, result.stale] as const;
+          }
+        })
+        .filter(typedBoolean)
+        .sort((a, b) => {
+          if (options.sort === "name") return a[0].localeCompare(b[0]);
+          return (a[1] ?? 0) - (b[1] ?? 0);
+        })
+        .map(([name, lastPublish, stale]) => [
+          name,
+          lastPublish != null
+            ? formatters[options.dateFormat](lastPublish, now)
+            : null,
+          stale,
+        ]),
     });
-
-    console.log(table.toString());
   }
+
+  outputs[options.output](outputData);
 }
 
 yargs(hideBin(process.argv))
@@ -191,12 +187,36 @@ yargs(hideBin(process.argv))
   .help("h")
   .alias("h", "help")
   .showHelpOnFail(false, "Specify --help for available options")
+  .option("d", {
+    alias: "date-format",
+    coerce: (value): Options["dateFormat"] => {
+      if (!["absolute", "relative"].includes(value)) {
+        throw new Error(`Date format ${value} is not supported!`);
+      }
+      return value;
+    },
+    default: "relative",
+    describe: "Format to output dates",
+    nargs: 1,
+  })
   .option("f", {
     alias: "full",
     default: false,
     describe: "Show full report (including non-stale dependencies)",
     nargs: 0,
     type: "boolean",
+  })
+  .option("o", {
+    alias: "output",
+    coerce: (value): "json" | "table" => {
+      if (!["json", "table"].includes(value)) {
+        throw new Error(`Output to ${value} is not supported!`);
+      }
+      return value;
+    },
+    default: "table",
+    describe: "Format to output data",
+    ngargs: 1,
   })
   .option("r", {
     alias: "registry",
@@ -213,6 +233,18 @@ yargs(hideBin(process.argv))
     },
     default: "https://registry.npmjs.org",
     describe: "URL of registry to check against",
+    ngargs: 1,
+  })
+  .option("s", {
+    alias: "sort",
+    coerce: (value): "name" | "lastPublish" => {
+      if (!["name", "lastPublish"].includes(value)) {
+        throw new Error(`Format ${value} is not supported!`);
+      }
+      return value;
+    },
+    default: "name",
+    describe: "Field to sort data",
     ngargs: 1,
   })
   .option("t", {
@@ -241,8 +273,11 @@ yargs(hideBin(process.argv))
     },
     (argv) => {
       return main(argv._, {
+        dateFormat: argv.d,
         full: argv.f,
+        output: argv.o,
         registry: argv.r,
+        sort: argv.s,
         threshold: argv.t,
       });
     }
