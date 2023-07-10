@@ -1,5 +1,6 @@
 import { createRequire } from "node:module";
 
+import ms from "ms";
 import type { PackageJson, SetRequired } from "type-fest";
 
 const require = createRequire(import.meta.url);
@@ -24,6 +25,14 @@ const strings = {
 export function t(key: keyof typeof strings, value: number) {
   const o = strings[key];
   return o[value as keyof typeof o] ?? o.default;
+}
+
+export function toAgo(ts: number, now: number) {
+  return `${ms(now - ts, { long: true })} ago`;
+}
+
+export function toISOString(ts: number) {
+  return new Date(ts).toISOString();
 }
 
 type FalsyValues = false | null | undefined | "" | 0;

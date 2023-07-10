@@ -9,7 +9,7 @@ import type { UI } from "cliui";
 const require = createRequire(import.meta.url);
 const cliui = require("cliui");
 
-const maxLengthLastPublish = 20;
+const maxLengthLastPublish = 24;
 
 type Options = {
   depsMaxLength: number;
@@ -29,7 +29,7 @@ export default class UITable {
     this._ui = cliui({});
 
     this._depsMaxLength =
-      options.depsMaxLength === 0 ? 6 : options.depsMaxLength;
+      options.depsMaxLength === 0 ? 6 : Math.max(options.depsMaxLength, 4);
     this._name = options.name ?? "unknown";
     this._path = options.path;
 
