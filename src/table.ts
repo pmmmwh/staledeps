@@ -39,7 +39,7 @@ export default class UITable {
     });
     this._ui.div(
       this.toRowColumn(chalk.bold("Name"), this._depsMaxLength),
-      this.toRowColumn(chalk.bold("Last Publish"), maxLengthLastPublish)
+      this.toRowColumn(chalk.bold("Last Publish"), maxLengthLastPublish),
     );
   }
 
@@ -54,7 +54,7 @@ export default class UITable {
   addRow(dep: string, lastUpdate: string): void {
     this._ui.div(
       this.toRowColumn(dep, this._depsMaxLength),
-      this.toRowColumn(lastUpdate, maxLengthLastPublish)
+      this.toRowColumn(lastUpdate, maxLengthLastPublish),
     );
   }
 

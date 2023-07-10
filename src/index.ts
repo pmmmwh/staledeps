@@ -34,7 +34,7 @@ type RegistryResponse = {
 
 async function main(
   paths: ReadonlyArray<string | number>,
-  options: Options
+  options: Options,
 ): Promise<void> {
   const processPaths = [...paths];
   if (processPaths.length === 0) {
@@ -73,7 +73,7 @@ async function main(
           } catch (_) {
             ora.fail(`Failed to load package.json from ${filePath}`);
           }
-        })
+        }),
       );
 
       return new Map<string, ManifestData>(results.filter(typedBoolean));
@@ -84,7 +84,7 @@ async function main(
       failText: `Failed to load package.json ${fileMsg}`,
       successText: (results) =>
         `Loaded ${results.size} package.json ${fileMsg}`,
-    }
+    },
   );
 
   const depSet = new Set<string>();
@@ -130,7 +130,7 @@ async function main(
               return;
             }
           }, d);
-        })
+        }),
       );
 
       return new Map<string, DependencyResult>(results.filter(typedBoolean));
@@ -141,7 +141,7 @@ async function main(
       failText: `Failed to fetch metadata for ${depMsg}`,
       successText: (results) =>
         `Fetched metadata for ${results.size} ${depMsg}`,
-    }
+    },
   );
 
   const outputData = new Map<string, ManifestOutputData>();
@@ -278,5 +278,5 @@ yargs(hideBin(process.argv))
         sortDir: argv.d,
         threshold: argv.t,
       });
-    }
+    },
   ).argv;
