@@ -14,12 +14,18 @@ export type ManifestData = {
 
 export type ManifestOutputData = {
   readonly dependencies: ReadonlyArray<
-    readonly [name: string, lastPublish: string | null, stale: boolean | null]
+    readonly [
+      name: string,
+      lastPublish: number | null,
+      latestVersion: string | null,
+      stale: boolean | null
+    ]
   >;
   readonly name?: string;
 };
 
 export type DependencyResult = {
   readonly lastPublish: number | undefined;
+  readonly latestVersion: string;
   readonly stale: boolean;
 };

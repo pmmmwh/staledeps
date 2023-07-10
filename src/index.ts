@@ -14,7 +14,7 @@ import undici from "undici";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 
-import { packageJson, t, toAgo, toISOString, typedBoolean } from "./helpers.js";
+import { packageJson, t, typedBoolean } from "./helpers.js";
 import { outputs } from "./outputs.js";
 import type {
   DependencyResult,
@@ -115,7 +115,8 @@ async function main(
 
             try {
               const res: RegistryResponse = await body.json();
-              const lastPublishTime = res.time[res["dist-tags"].latest];
+              const latestVersion = res["dist-tags"].latest;
+              const lastPublishTime = res.time[latestVersion];
 
               let stale = false;
               let lastPublish: number | undefined = undefined;
@@ -124,7 +125,7 @@ async function main(
                 stale = now - lastPublish > options.threshold;
               }
 
-              return [dep, { lastPublish, stale }] as const;
+              return [dep, { lastPublish, latestVersion, stale }] as const;
             } catch (_) {
               ora.fail(`Failed to parse metadata for ${dep}`);
               return;
@@ -151,10 +152,15 @@ async function main(
       dependencies: data.dependencies
         .map((dep) => {
           const result = depResults.get(dep);
-          if (result == null || result.lastPublish == null) {
-            return [dep, null, null] as const;
+          if (result?.lastPublish == null) {
+            return [dep, null, null, null] as const;
           } else if (result.stale || options.full) {
-            return [dep, result.lastPublish, result.stale] as const;
+            return [
+              dep,
+              result.lastPublish,
+              result.latestVersion,
+              result.stale,
+            ] as const;
           }
         })
         .filter(typedBoolean)
@@ -162,20 +168,11 @@ async function main(
           const x = options.sortDir === "desc" ? -1 : 1;
           if (options.sort === "name") return x * a[0].localeCompare(b[0]);
           return x * ((a[1] ?? 0) - (b[1] ?? 0));
-        })
-        .map(([name, lastPublish, stale]) => [
-          name,
-          lastPublish != null
-            ? options.output === "json"
-              ? toISOString(lastPublish)
-              : toAgo(lastPublish, now)
-            : null,
-          stale,
-        ]),
+        }),
     });
   }
 
-  outputs[options.output](outputData);
+  outputs[options.output](outputData, now);
 }
 
 yargs(hideBin(process.argv))

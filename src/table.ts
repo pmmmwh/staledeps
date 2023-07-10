@@ -9,7 +9,7 @@ import type { UI } from "cliui";
 const require = createRequire(import.meta.url);
 const cliui = require("cliui");
 
-const maxLengthLastPublish = 24;
+const maxLengthMetadata = 24;
 
 type Options = {
   depsMaxLength: number;
@@ -39,7 +39,8 @@ export default class UITable {
     });
     this._ui.div(
       this.toRowColumn(chalk.bold("Name"), this._depsMaxLength),
-      this.toRowColumn(chalk.bold("Last Publish"), maxLengthLastPublish)
+      this.toRowColumn(chalk.bold("Last Publish"), maxLengthMetadata),
+      this.toRowColumn(chalk.bold("Latest Version"), maxLengthMetadata)
     );
   }
 
@@ -51,10 +52,11 @@ export default class UITable {
     };
   }
 
-  addRow(dep: string, lastUpdate: string): void {
+  addRow(dep: string, lastUpdate: string, latestVersion: string): void {
     this._ui.div(
       this.toRowColumn(dep, this._depsMaxLength),
-      this.toRowColumn(lastUpdate, maxLengthLastPublish)
+      this.toRowColumn(lastUpdate, maxLengthMetadata),
+      this.toRowColumn(latestVersion, maxLengthMetadata)
     );
   }
 
