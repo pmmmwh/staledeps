@@ -14,7 +14,7 @@ import undici from "undici";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 
-import { packageJson, t, toAgo, toISOString, typedBoolean } from "./helpers.js";
+import { packageJson, t, typedBoolean } from "./helpers.js";
 import { outputs } from "./outputs.js";
 import type {
   DependencyResult,
