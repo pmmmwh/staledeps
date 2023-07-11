@@ -184,12 +184,8 @@ yargs(hideBin(process.argv))
   .showHelpOnFail(false, "Specify --help for available options")
   .option("d", {
     alias: "sort-dir",
-    coerce: (value): Options["sortDir"] => {
-      if (!["asc", "desc"].includes(value)) {
-        throw new Error(`Sort direction ${value} is not supported!`);
-      }
-      return value;
-    },
+    choices: ["asc", "desc"],
+    coerce: (value): Options["sortDir"] => value,
     default: "asc",
     describe: "Direction to sort data",
     ngargs: 1,
@@ -203,12 +199,8 @@ yargs(hideBin(process.argv))
   })
   .option("o", {
     alias: "output",
-    coerce: (value): Options["output"] => {
-      if (!["json", "table"].includes(value)) {
-        throw new Error(`Output to ${value} is not supported!`);
-      }
-      return value;
-    },
+    choices: ["json", "table"],
+    coerce: (value): Options["output"] => value,
     default: "table",
     describe: "Format to output data",
     ngargs: 1,
@@ -232,12 +224,8 @@ yargs(hideBin(process.argv))
   })
   .option("s", {
     alias: "sort",
-    coerce: (value): Options["sort"] => {
-      if (!["name", "lastPublish"].includes(value)) {
-        throw new Error(`Format ${value} is not supported!`);
-      }
-      return value;
-    },
+    choices: ["name", "lastPublish"],
+    coerce: (value): Options["sort"] => value,
     default: "name",
     describe: "Field to sort data",
     ngargs: 1,
