@@ -1422,12 +1422,12 @@ __metadata:
     p-limit: ^4.0.0
     prettier: ^2.7.1
     tslib: ^2.4.0
-    type-fest: ^3.0.0
+    type-fest: ^4.0.0
     typescript: ~5.1.3
     undici: ^5.5.1
     yargs: ^17.5.1
   peerDependencies:
-    type-fest: ^3.0.0
+    type-fest: ^4.0.0
   peerDependenciesMeta:
     type-fest:
       optional: true
@@ -1563,10 +1563,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"type-fest@npm:^3.0.0":
-  version: 3.13.0
-  resolution: "type-fest@npm:3.13.0"
-  checksum: f7be142ae1ad0582eafd52d085350799c8cd918c15455896a06c82c147b61f8cea58892bedf1348943478e37740562219375b3b59fd855db99cd2b2766510f98
+"type-fest@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "type-fest@npm:4.0.0"
+  checksum: 716f32ac341b1cf35bf08cc5cc6a11822436333966d3f4d94758112f45829efa3efb643ebc74a53e514e68a1bddab144d0153d654e072b41ba9bd98bcf841d75
   languageName: node
   linkType: hard
 
