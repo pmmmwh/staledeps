@@ -1,6 +1,6 @@
 {
   "name": "staledeps",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "type": "module",
   "description": "Find stale dependencies in the package.json file(s)",
   "author": "Michael Mok",
@@ -35,27 +35,27 @@
     "prepack": "yarn clean && yarn build"
   },
   "dependencies": {
-    "chalk": "^5.0.1",
+    "chalk": "^5.3.0",
     "cliui": "^8.0.1",
     "ms": "^3.0.0-canary.1",
-    "ora": "^6.1.1",
+    "ora": "^7.0.1",
     "p-limit": "^4.0.0",
-    "tslib": "^2.4.0",
-    "undici": "^5.5.1",
-    "yargs": "^17.5.1"
+    "tslib": "^2.6.2",
+    "undici": "^5.23.0",
+    "yargs": "^17.7.2"
   },
   "devDependencies": {
-    "@types/node": "^20.1.0",
-    "@types/yargs": "^17.0.10",
-    "@typescript-eslint/eslint-plugin": "^5.30.0",
-    "@typescript-eslint/parser": "^5.30.0",
-    "eslint": "^8.18.0",
+    "@types/node": "^20.5.3",
+    "@types/yargs": "^17.0.24",
+    "@typescript-eslint/eslint-plugin": "^6.4.1",
+    "@typescript-eslint/parser": "^6.4.1",
+    "eslint": "^8.47.0",
     "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^4.1.0",
+    "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
-    "prettier": "^2.7.1",
-    "type-fest": "^4.0.0",
-    "typescript": "~5.1.3"
+    "prettier": "^3.0.2",
+    "type-fest": "^4.2.0",
+    "typescript": "~5.1.6"
   },
   "peerDependencies": {
     "type-fest": "^4.0.0"
@@ -69,6 +69,6 @@
     "ms": "patch:ms@npm:3.0.0-canary.1#.yarn/patches/ms-npm-3.0.0-canary.1-a95efad0b2.patch"
   },
   "engines": {
-    "node": ">= 14.16"
+    "node": ">=16"
   }
 }
