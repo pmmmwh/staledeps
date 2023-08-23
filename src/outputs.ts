@@ -15,7 +15,7 @@ function jsonOutput(raw: Map<string, ManifestOutputData>) {
           latestVersion,
           stale,
         ];
-      })
+      }),
     );
   }
 

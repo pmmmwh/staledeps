@@ -18,7 +18,7 @@ export type ManifestOutputData = {
       name: string,
       lastPublish: number | null,
       latestVersion: string | null,
-      stale: boolean | null
+      stale: boolean | null,
     ]
   >;
   readonly name?: string;
