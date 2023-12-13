@@ -1700,7 +1700,7 @@ __metadata:
     tslib: ^2.6.2
     type-fest: ^4.7.1
     typescript: ~5.3.2
-    undici: ^5.23.0
+    undici: ^6.0.1
     yargs: ^17.7.2
   peerDependencies:
     type-fest: ^4.0.0
@@ -1899,12 +1899,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici@npm:^5.23.0":
-  version: 5.28.2
-  resolution: "undici@npm:5.28.2"
+"undici@npm:^6.0.1":
+  version: 6.0.1
+  resolution: "undici@npm:6.0.1"
   dependencies:
     "@fastify/busboy": ^2.0.0
-  checksum: f9e9335803f962fff07c3c11c6d50bbc76248bacf97035047155adb29c3622a65bd6bff23a22218189740133149d22e63b68131d8c40e78ac6cb4b6d686a6dfa
+  checksum: a277fdff09ac9971cfb96912abd5e6f5d70e7373e2f4e6d5eee8e2f1f727eb67852d367a9edf445d20f9b5e721558ac511a6788ff84c81014045c2ef523418ed
   languageName: node
   linkType: hard
 
