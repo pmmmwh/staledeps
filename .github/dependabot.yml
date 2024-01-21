@@ -12,4 +12,20 @@ updates:
       - pmmmwh
     labels:
       - dependencies
+    groups:
+      typescript-eslint:
+        patterns:
+          - "@typescript-eslint/*"
     versioning-strategy: widen
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: saturday
+    open-pull-requests-limit: 10
+    reviewers:
+      - pmmmwh
+    assignees:
+      - pmmmwh
+    labels:
+      - dependencies

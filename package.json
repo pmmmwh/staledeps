@@ -1,6 +1,6 @@
 {
   "name": "staledeps",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "type": "module",
   "description": "Find stale dependencies in the package.json file(s)",
   "author": "Michael Mok",
@@ -23,7 +23,7 @@
     ".": "./dist/index.js"
   },
   "types": "./dist/index.d.ts",
-  "packageManager": "yarn@3.6.1",
+  "packageManager": "yarn@4.0.2",
   "scripts": {
     "build": "tsc --build",
     "clean": "tsc --build --clean",
@@ -38,10 +38,10 @@
     "chalk": "^5.3.0",
     "cliui": "^8.0.1",
     "ms": "^3.0.0-canary.1",
-    "ora": "^7.0.1",
-    "p-limit": "^4.0.0",
+    "ora": "^8.0.1",
+    "p-limit": "^5.0.0",
     "tslib": "^2.6.2",
-    "undici": "^5.23.0",
+    "undici": "^6.4.0",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
@@ -69,6 +69,6 @@
     "ms": "patch:ms@npm:3.0.0-canary.1#.yarn/patches/ms-npm-3.0.0-canary.1-a95efad0b2.patch"
   },
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   }
 }

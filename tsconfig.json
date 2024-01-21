@@ -4,12 +4,12 @@
     "declaration": true,
     "importHelpers": true,
     "incremental": true,
-    "lib": ["ES2020"],
-    "module": "node16",
+    "lib": ["ES2022"],
+    "module": "NodeNext",
     "outDir": "dist",
     "removeComments": true,
     "skipLibCheck": true,
-    "target": "ES2020",
+    "target": "ES2022",
 
     /* Strict checks */
     "strict": true,
@@ -22,7 +22,7 @@
 
     /* Module resolution */
     "esModuleInterop": true,
-    "moduleResolution": "node16",
+    "moduleResolution": "NodeNext",
     "resolveJsonModule": true,
 
     /* Consistency checks */
