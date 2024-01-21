@@ -9,13 +9,15 @@
   "bugs": "https://github.com/pmmmwh/staledeps/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pmmmwh/staledeps.git"
+    "url": "git+https://github.com/pmmmwh/staledeps.git"
   },
   "files": [
     "dist",
     "!**/*.tsbuildinfo"
   ],
-  "bin": "./dist/index.js",
+  "bin": {
+    "staledeps": "dist/index.js"
+  },
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "exports": {
