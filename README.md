@@ -21,7 +21,7 @@ Or simply using [npx](https://docs.npmjs.com/cli/v8/commands/npx), the package r
 $ npx staledeps
 ```
 
-_Note:_ `staledeps` requires Node.js >= 14.16.
+_Note:_ `staledeps` requires Node.js >= 18.
 
 ## Usage
 
