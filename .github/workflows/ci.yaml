@@ -18,7 +18,7 @@ jobs:
         node:
           - 18
           - 20
-          - 22
+          - 21
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
