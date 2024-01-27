@@ -1393,7 +1393,7 @@ __metadata:
     type-fest:
       optional: true
   bin:
-    staledeps: ./dist/index.js
+    staledeps: dist/index.js
   languageName: unknown
   linkType: soft
 
@@ -1519,9 +1519,9 @@ __metadata:
   linkType: hard
 
 "type-fest@npm:^4.7.1":
-  version: 4.9.0
-  resolution: "type-fest@npm:4.9.0"
-  checksum: 49acfb67999566a24d5604435c8cff786dfc26ebea5a2a343e14d437d34f30a55248f8e597b8f64446c344bb68ce14af68899f562cf66ca66c1e1a856b393259
+  version: 4.10.1
+  resolution: "type-fest@npm:4.10.1"
+  checksum: f82056fbfbfc617fd1cd795ab73aac000f65407463ef84a7de2dc16af9fa9deb2520d8430e6d80216664edc9eda484fd1c205bcb118fff41e7b3ec6b4e497c91
   languageName: node
   linkType: hard
 
