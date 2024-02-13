@@ -27,7 +27,7 @@
 
     /* Consistency checks */
     "forceConsistentCasingInFileNames": true,
-    "verbatimModuleSyntax": true,
+    "verbatimModuleSyntax": true
   },
-  "include": ["."],
+  "include": ["."]
 }
