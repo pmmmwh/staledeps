@@ -37,7 +37,7 @@ export function toISOString(ts: number) {
 
 type FalsyValues = false | null | undefined | "" | 0;
 export function typedBoolean<ValueType>(
-  value: ValueType,
+  value: ValueType
 ): value is Exclude<ValueType, FalsyValues> {
   return Boolean(value);
 }
