@@ -1,31 +1,29 @@
-export type Options = {
+export interface Options {
   readonly full: boolean;
   readonly output: "json" | "table";
   readonly registry: URL;
   readonly sort: "name" | "lastPublish";
   readonly sortDir: "asc" | "desc";
   readonly threshold: number;
-};
+}
 
-export type ManifestData = {
+export interface ManifestData {
   readonly dependencies: string[];
   readonly name?: string;
-};
+}
 
-export type ManifestOutputData = {
-  readonly dependencies: ReadonlyArray<
-    readonly [
-      name: string,
-      lastPublish: number | null,
-      latestVersion: string | null,
-      stale: boolean | null,
-    ]
-  >;
+export interface ManifestOutputData {
+  readonly dependencies: readonly (readonly [
+    name: string,
+    lastPublish: number | null,
+    latestVersion: string | null,
+    stale: boolean | null,
+  ])[];
   readonly name?: string;
-};
+}
 
-export type DependencyResult = {
+export interface DependencyResult {
   readonly lastPublish: number | undefined;
   readonly latestVersion: string;
   readonly stale: boolean;
-};
+}

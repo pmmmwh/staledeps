@@ -1,19 +1,9 @@
-import path from "node:path";
-import url from "node:url";
-
-import { FlatCompat } from "@eslint/eslintrc";
-import js from "@eslint/js";
 import tsParser from "@typescript-eslint/parser";
 import prettierRecommended from "eslint-plugin-prettier/recommended";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
+import tsEslint from "typescript-eslint";
 
-const compat = new FlatCompat({
-  baseDirectory: path.dirname(url.fileURLToPath(import.meta.url)),
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all,
-});
-
-export default [
+export default tsEslint.config(
   {
     plugins: {
       "simple-import-sort": simpleImportSort,
@@ -28,11 +18,10 @@ export default [
       "simple-import-sort/imports": "error",
     },
   },
-  ...compat.extends("plugin:@typescript-eslint/recommended").map((config) => ({
-    ...config,
-    files: ["src/**/*.ts"],
+  ...tsEslint.configs.recommended,
+  ...tsEslint.configs.stylistic,
+  {
     rules: {
-      ...config.rules,
       "@typescript-eslint/no-unused-vars": [
         "error",
         {
@@ -46,6 +35,6 @@ export default [
         },
       ],
     },
-  })),
-  prettierRecommended,
-];
+  },
+  prettierRecommended
+);

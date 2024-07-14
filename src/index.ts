@@ -23,17 +23,15 @@ import type {
   Options,
 } from "./types/commons.js";
 
-type RegistryResponse = {
+interface RegistryResponse {
   readonly ["dist-tags"]: {
     latest: string;
   };
-  readonly time: {
-    readonly [key: string]: string;
-  };
-};
+  readonly time: Readonly<Record<string, string>>;
+}
 
 async function main(
-  paths: ReadonlyArray<string | number>,
+  paths: readonly (string | number)[],
   options: Options
 ): Promise<void> {
   const processPaths = [...paths];

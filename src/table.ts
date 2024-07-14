@@ -11,12 +11,12 @@ const cliui = require("cliui");
 
 const maxLengthMetadata = 24;
 
-type Options = {
+interface Options {
   depsMaxLength: number;
   path: string;
 
   name?: string;
-};
+}
 
 export default class UITable {
   private _ui: UI;
