@@ -20,6 +20,7 @@ updates:
       typescript-eslint:
         patterns:
           - "@typescript-eslint/*"
+          - typescript-eslint
     versioning-strategy: widen
   - package-ecosystem: github-actions
     directory: "/"
