@@ -1,26 +1,24 @@
-import tsParser from "@typescript-eslint/parser";
-import prettierRecommended from "eslint-plugin-prettier/recommended";
+import eslint from "@eslint/js";
+import prettier from "eslint-plugin-prettier/recommended";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
-import tsEslint from "typescript-eslint";
+import tseslint from "typescript-eslint";
 
-export default tsEslint.config(
+export default tseslint.config(
+  eslint.configs.recommended,
+  tseslint.configs.recommended,
+  tseslint.configs.stylistic,
   {
-    plugins: {
-      "simple-import-sort": simpleImportSort,
-    },
-    languageOptions: {
-      ecmaVersion: 2020,
-      parser: tsParser,
-      sourceType: "module",
-    },
+    name: "simple-import-sort/recommended",
+    plugins: { "simple-import-sort": simpleImportSort },
     rules: {
       "simple-import-sort/exports": "error",
       "simple-import-sort/imports": "error",
     },
   },
-  ...tsEslint.configs.recommended,
-  ...tsEslint.configs.stylistic,
   {
+    languageOptions: {
+      ecmaVersion: 2020,
+    },
     rules: {
       "@typescript-eslint/no-unused-vars": [
         "error",
@@ -36,5 +34,5 @@ export default tsEslint.config(
       ],
     },
   },
-  prettierRecommended
+  prettier
 );
