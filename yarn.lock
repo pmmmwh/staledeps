@@ -1221,12 +1221,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"p-limit@npm:^6.2.0":
-  version: 6.2.0
-  resolution: "p-limit@npm:6.2.0"
+"p-limit@npm:^7.1.0":
+  version: 7.1.0
+  resolution: "p-limit@npm:7.1.0"
   dependencies:
-    yocto-queue: "npm:^1.1.1"
-  checksum: 10/70e8df3e5f1c173c9bd9fa8390a3c5c2797505240ae42973536992b1f5f59a922153c2f35ff1bf36fb72a0f025b0f13fca062a4233e830adad446960d56b4d84
+    yocto-queue: "npm:^1.2.1"
+  checksum: 10/d466651223e82c1732564c50a18a452a58485c2bb7f850dc1efec1a5c5d0fe5524edc79d99f5cab9061d7c8abeb302dd1afc126407f78d5407e47ecb5f17615c
   languageName: node
   linkType: hard
 
@@ -1397,7 +1397,7 @@ __metadata:
     eslint-plugin-simple-import-sort: "npm:^12.1.1"
     ms: "npm:^3.0.0-canary.1"
     ora: "npm:^8.2.0"
-    p-limit: "npm:^6.2.0"
+    p-limit: "npm:^7.1.0"
     prettier: "npm:^3.5.3"
     tslib: "npm:^2.8.1"
     type-fest: "npm:^4.40.1"
@@ -1662,9 +1662,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yocto-queue@npm:^1.1.1":
-  version: 1.1.1
-  resolution: "yocto-queue@npm:1.1.1"
-  checksum: 10/f2e05b767ed3141e6372a80af9caa4715d60969227f38b1a4370d60bffe153c9c5b33a862905609afc9b375ec57cd40999810d20e5e10229a204e8bde7ef255c
+"yocto-queue@npm:^1.2.1":
+  version: 1.2.1
+  resolution: "yocto-queue@npm:1.2.1"
+  checksum: 10/0843d6c2c0558e5c06e98edf9c17942f25c769e21b519303a5c2adefd5b738c9b2054204dc856ac0cd9d134b1bc27d928ce84fd23c9e2423b7e013d5a6f50577
   languageName: node
   linkType: hard
