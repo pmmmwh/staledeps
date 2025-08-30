@@ -1395,7 +1395,7 @@ __metadata:
     eslint-config-prettier: "npm:^10.1.2"
     eslint-plugin-prettier: "npm:^5.2.6"
     eslint-plugin-simple-import-sort: "npm:^12.1.1"
-    ms: "npm:^3.0.0-canary.1"
+    ms: "npm:^4.0.0-nightly.202508271359"
     ora: "npm:^8.2.0"
     p-limit: "npm:^6.2.0"
     prettier: "npm:^3.5.3"
