@@ -37,7 +37,7 @@
   "dependencies": {
     "chalk": "^5.4.1",
     "cliui": "^9.0.1",
-    "ms": "^3.0.0-canary.1",
+    "ms": "^4.0.0-nightly.202508271359",
     "ora": "^8.2.0",
     "p-limit": "^6.2.0",
     "tslib": "^2.8.1",
