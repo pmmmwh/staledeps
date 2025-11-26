@@ -103,7 +103,6 @@ async function main(
           return limit(async (dep) => {
             const packageUrl = new URL(dep, options.registry);
             const { body, statusCode } = await undici.request(packageUrl, {
-              maxRedirections: 2,
               method: "GET",
             });
             if (statusCode >= 400) {
