@@ -170,12 +170,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^24.3.0":
-  version: 24.10.0
-  resolution: "@types/node@npm:24.10.0"
+"@types/node@npm:^25.0.6":
+  version: 25.0.6
+  resolution: "@types/node@npm:25.0.6"
   dependencies:
     undici-types: "npm:~7.16.0"
-  checksum: 10/bc3abd9adc61423b1a72324208f3fcfe4f957b9fc8b9e81bf3fed584deb0b40f0e2af63cd0e2afa8f408d06f14bdba899ac638ac619f646badf8e72de246c052
+  checksum: 10/19d6dcaccc49b8d9efd987d6e7573f84cf3665fbe88adc0eb08e87d3682a36a4a6997a5ead2a11c79eb891c0e0c5260caef23bd262e5772708d95330d5b7ddf1
   languageName: node
   linkType: hard
 
@@ -1268,7 +1268,7 @@ __metadata:
   resolution: "staledeps@workspace:."
   dependencies:
     "@eslint/js": "npm:^9.25.1"
-    "@types/node": "npm:^24.3.0"
+    "@types/node": "npm:^25.0.6"
     "@types/yargs": "npm:^17.0.33"
     chalk: "npm:^5.4.1"
     cliui: "npm:^9.0.1"
