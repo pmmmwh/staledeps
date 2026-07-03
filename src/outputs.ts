@@ -27,14 +27,12 @@ function tableOutput(raw: Map<string, ManifestOutputData>, now: number) {
     const rowData: [string, string, string][] = [];
     let depsMaxLength = 0;
     for (const [name, lastPublish, latestVersion, stale] of data.dependencies) {
-      let pushed = false;
       if (lastPublish == null) {
         rowData.push([
           chalk.yellow(name),
           chalk.yellow("Failed to fetch"),
           chalk.yellow("Failed to fetch"),
         ]);
-        pushed = true;
       } else {
         const color = stale ? chalk.red : chalk.green;
         rowData.push([
@@ -42,10 +40,9 @@ function tableOutput(raw: Map<string, ManifestOutputData>, now: number) {
           color(toAgo(lastPublish, now)),
           color(latestVersion),
         ]);
-        pushed = true;
       }
 
-      if (pushed && name.length > depsMaxLength) {
+      if (name.length > depsMaxLength) {
         depsMaxLength = name.length;
       }
     }

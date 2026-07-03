@@ -211,8 +211,8 @@ void yargs(hideBin(process.argv))
           ora().warn("Using non-HTTPS registry URL");
         }
         return url;
-      } catch (_) {
-        throw new Error("Failed to parse registry URL!");
+      } catch (cause) {
+        throw new Error("Failed to parse registry URL!", { cause });
       }
     },
     default: "https://registry.npmjs.org",
@@ -236,8 +236,8 @@ void yargs(hideBin(process.argv))
           throw new Error();
         }
         return result;
-      } catch (_) {
-        throw new Error("Failed to parse threshold value!");
+      } catch (cause) {
+        throw new Error("Failed to parse threshold value!", { cause });
       }
     },
     default: "2y",
