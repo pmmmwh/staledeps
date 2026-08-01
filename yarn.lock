@@ -383,10 +383,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chalk@npm:^5.4.1, chalk@npm:^5.6.2":
+"chalk@npm:^5.6.2":
   version: 5.6.2
   resolution: "chalk@npm:5.6.2"
   checksum: 10/1b2f48f6fba1370670d5610f9cd54c391d6ede28f4b7062dd38244ea5768777af72e5be6b74fb6c6d54cb84c4a2dff3f3afa9b7cb5948f7f022cfd3d087989e0
+  languageName: node
+  linkType: hard
+
+"chalk@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "chalk@npm:6.0.0"
+  checksum: 10/bdcb895b9c848ddbce38f38df5a10a3e272d6c04d759161789c4a2fa5a1fa78bf9eecf4eef73433a2a3be7324d6da96c3c9baf5c80862f37683cc0b890597831
   languageName: node
   linkType: hard
 
@@ -1052,7 +1059,7 @@ __metadata:
     "@eslint/js": "npm:^10.0.1"
     "@types/node": "npm:^24.3.0"
     "@types/yargs": "npm:^17.0.33"
-    chalk: "npm:^5.4.1"
+    chalk: "npm:^6.0.0"
     cliui: "npm:^9.0.1"
     eslint: "npm:^10.6.0"
     eslint-config-prettier: "npm:^10.1.2"
