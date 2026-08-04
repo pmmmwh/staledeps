@@ -35,7 +35,7 @@
     "prepack": "yarn clean && yarn build"
   },
   "dependencies": {
-    "chalk": "^5.4.1",
+    "chalk": "^6.0.0",
     "cliui": "^9.0.1",
     "ms": "^4.0.0-nightly.202508271359",
     "ora": "^9.4.0",
