@@ -1151,7 +1151,7 @@ __metadata:
     p-limit: "npm:^7.3.0"
     prettier: "npm:^3.5.3"
     tslib: "npm:^2.8.1"
-    type-fest: "npm:^5.0.1"
+    type-fest: "npm:^6.0.2"
     typescript: "npm:~6.0.3"
     typescript-eslint: "npm:^8.31.1"
     undici: "npm:^8.1.0"
@@ -1265,12 +1265,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"type-fest@npm:^5.0.1":
-  version: 5.10.0
-  resolution: "type-fest@npm:5.10.0"
+"type-fest@npm:^6.0.2":
+  version: 6.0.2
+  resolution: "type-fest@npm:6.0.2"
   dependencies:
     tagged-tag: "npm:^1.0.0"
-  checksum: 10/299a575a3d2bbc74f70da508629c448806dd5c51cbd2c5adf05b1755636f9f3b12c803b2c52c0eac561d4472ddc5e8ab42b88954cb238b101c9d4595906aea7f
+  checksum: 10/5c884b1d5c3a5bbc97f091103c3e92996b5e0f5e746fe9eafe8df94e9bf2c0ae1403f5ee522952da896311c3c3ed4fa3f30abd0a37fb9e2045477984880ddb23
   languageName: node
   linkType: hard
 
